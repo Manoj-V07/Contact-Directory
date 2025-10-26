@@ -17,7 +17,7 @@ import java.util.List;
 public class ContactGroupController {
     private final ContactGroupService contactGroupService;
 
-    @PostMapping("/contact/{contactId}/groups/{groupId}")
+    @PostMapping("/contacts/{contactId}/groups/{groupId}")
     public ResponseEntity<ContactGroupDTO> assignContactToGroup(@PathVariable Long contactId,@PathVariable Long groupId){
         ContactGroup saved = contactGroupService.assignContactToGroup(contactId,groupId);
         return ResponseEntity.ok(EntityMapper.toContactGroupDTO(saved));
