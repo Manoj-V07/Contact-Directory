@@ -50,7 +50,7 @@ public class ContactService {
         List<Contact> byName = contactRepository.findByNameContainingIgnoreCase(keyword);
         List<Contact> byEmail = contactRepository.findByEmailContainingIgnoreCase(keyword);
         byName.addAll(byEmail);
-        return byName;
+        return byName.stream().distinct().toList();
     }
 
     public List<Contact> getContactsByUser(Long userId){
