@@ -18,11 +18,11 @@ public class ContactGroup {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id",nullable = false)
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnoreProperties({"contactGroups"})
     private Contact contact;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id",nullable = false)
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnoreProperties({"contactGroups"})
     private Group group;
 }

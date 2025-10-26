@@ -26,4 +26,8 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval=true)
     @JsonIgnoreProperties("user")
     private List<Group> groups;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval=true)
+    @JsonIgnoreProperties("user")
+    private List<Contact> contacts;
 }

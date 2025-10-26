@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "contacts")
@@ -31,6 +32,10 @@ public class Contact {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",nullable = false)
-    @JsonIgnoreProperties("contacts")
+    @JsonIgnoreProperties({"contacts","groups"})
     private User user;
+
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("contact")
+    private List<ContactGroup> contactGroups;
 }

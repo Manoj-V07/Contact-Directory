@@ -3,6 +3,7 @@ package com.example.contact_directory.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -19,7 +20,7 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "user_id",nullable = false)
-    @JsonIgnoreProperties("groups")
+    @JsonIgnoreProperties({"contact","groups"})
     private User user;
 
     @Column(nullable = false,length = 50)
@@ -29,6 +30,10 @@ public class Group {
     private String description;
 
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("group")
+    private List<ContactGroup> contactGroups;
 
     @PrePersist
     public void onCreate(){
